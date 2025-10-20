@@ -1,6 +1,6 @@
 import client from "../../../config/db.js";
 const updateProductQuery =
-  "UPDATE products SET name = $1, price = $2, link = $3 WHERE id = $4 RETURNING *;";
+  "UPDATE products SET name = COALESCE(NULLIF($2, ''), name), price = COALESCE(NULLIF($3, ''), price), link = COALESCE(NULLIF($4, ''), link) WHERE id = $1 RETURNING *;";
 export default async function updateProduct(req, res) {
   const { id } = req.params;
   const { name, price, link } = req.body;
@@ -12,7 +12,7 @@ export default async function updateProduct(req, res) {
   }
 
   try {
-    const values = [name, price, link || null, id];
+    const values = [id, name, price, link || null];
     const result = await client.query(updateProductQuery, values);
     res.status(200).json({ success: true, data: result.rows[0] });
   } catch (error) {
