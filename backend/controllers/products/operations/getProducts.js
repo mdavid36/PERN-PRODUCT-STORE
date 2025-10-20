@@ -1,4 +1,4 @@
-import { client } from "./config/db.js";
+import client from "../../../config/db.js";
 const getProductsQuery = "SELECT * FROM products;";
 
 export default async function getProducts(req, res) {

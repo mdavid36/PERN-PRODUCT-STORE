@@ -1,4 +1,4 @@
-import { client } from "./config/db.js";
+import client from "../../../config/db.js";
 
 const insertQuery =
   "INSERT INTO products (name, price, link) VALUES ($1, $2, $3) RETURNING *;";

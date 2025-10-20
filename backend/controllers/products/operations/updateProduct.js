@@ -1,5 +1,4 @@
-import { client } from "./config/db.js";
-
+import client from "../../../config/db.js";
 const updateProductQuery =
   "UPDATE products SET name = $1, price = $2, link = $3 WHERE id = $4 RETURNING *;";
 export default async function updateProduct(req, res) {

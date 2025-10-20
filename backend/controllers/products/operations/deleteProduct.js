@@ -1,4 +1,4 @@
-import { client } from "./config/db.js";
+import client from "../../../config/db.js";
 
 const deleteProductQuery = "DELETE FROM products WHERE id = $1 RETURNING *;";
 export default async function deleteProduct(req, res) {
