@@ -14,7 +14,7 @@ app.use(helmet());
 app.use(morgan("dev")); // Request logging
 app.use(express.json()); // Parse JSON request bodies
 
-app.use("/api", productRoutes);
+app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.send("Yo Yo Mo Fo!");
